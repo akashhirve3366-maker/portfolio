@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Akash Hirve — Salesforce Developer</title>
+<style>
+  :root {
+    --sky: #4A90D9; --sky-light: #7BB3E8; --sky-dark: #2C6FAC;
+    --cream: #FDF8F0; --cream-dark: #F0E8D8; --text: #2D3748;
+    --text-light: #718096; --white: #ffffff;
+    --shadow: 0 4px 20px rgba(74,144,217,0.12); --radius: 16px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--cream); color:var(--text); }
+
+  nav {
+    position:fixed; top:0; width:100%; z-index:100;
+    background:rgba(253,248,240,0.92); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(74,144,217,0.12);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:0 6%; height:64px;
+  }
+  .logo { font-size:1.3rem; font-weight:700; color:var(--sky-dark); letter-spacing:-0.5px; }
+  .logo span { color:var(--sky); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { text-decoration:none; color:var(--text-light); font-size:0.9rem; font-weight:500; transition:color .2s; }
+  .nav-links a:hover { color:var(--sky); }
+
+  section { padding:90px 8% 70px; }
+  .section-tag {
+    display:inline-block; background:rgba(74,144,217,0.1); color:var(--sky-dark);
+    font-size:0.78rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+    padding:5px 14px; border-radius:50px; margin-bottom:12px;
+  }
+  h2.section-title { font-size:2rem; font-weight:800; color:var(--text); margin-bottom:8px; }
+  .section-sub { color:var(--text-light); font-size:1rem; margin-bottom:40px; max-width:480px; }
+
+  #hero {
+    min-height:100vh; display:flex; align-items:center;
+    background:linear-gradient(135deg,#EBF4FD 0%,var(--cream) 60%);
+    padding-top:100px;
+  }
+  .hero-inner { display:flex; align-items:center; justify-content:space-between; gap:3rem; width:100%; flex-wrap:wrap; }
+  .hero-text { flex:1; min-width:280px; }
+  .hero-greeting { color:var(--sky); font-weight:600; font-size:1rem; margin-bottom:10px; }
+  .hero-name { font-size:clamp(2.5rem,6vw,4rem); font-weight:900; line-height:1.1; color:var(--text); margin-bottom:10px; }
+  .hero-name span { color:var(--sky); }
+  .hero-role { font-size:1.1rem; font-weight:600; color:var(--sky-dark); margin-bottom:14px; }
+  .hero-tagline { font-size:1rem; color:var(--text-light); line-height:1.8; max-width:480px; margin-bottom:24px; }
+  .cert-badges { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+  .badge {
+    background:rgba(74,144,217,0.1); border:1px solid rgba(74,144,217,0.25);
+    color:var(--sky-dark); font-size:0.75rem; font-weight:700;
+    padding:5px 12px; border-radius:50px;
+  }
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn { padding:12px 28px; border-radius:50px; font-weight:600; font-size:0.95rem; cursor:pointer; border:none; text-decoration:none; transition:all .2s; display:inline-block; }
+  .btn-primary { background:var(--sky); color:#fff; box-shadow:0 4px 16px rgba(74,144,217,0.35); }
+  .btn-primary:hover { background:var(--sky-dark); transform:translateY(-1px); }
+  .btn-outline { background:transparent; color:var(--sky-dark); border:2px solid var(--sky); }
+  .btn-outline:hover { background:var(--sky); color:#fff; transform:translateY(-1px); }
+  .hero-avatar {
+    width:260px; height:260px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg,var(--sky-light),var(--sky-dark));
+    display:flex; align-items:center; justify-content:center;
+    font-size:6.5rem; box-shadow:0 12px 40px rgba(74,144,217,0.3); position:relative;
+  }
+  .hero-avatar::after {
+    content:''; position:absolute; inset:-6px; border-radius:50%;
+    border:3px dashed rgba(74,144,217,0.3); animation:spin 20s linear infinite;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  #about { background:var(--white); }
+  .about-inner { display:flex; gap:4rem; align-items:center; flex-wrap:wrap; }
+  .about-text { flex:1; min-width:260px; }
+  .about-text p { color:var(--text-light); line-height:1.9; font-size:1.02rem; margin-bottom:16px; }
+  .about-stats { display:flex; gap:2rem; margin-top:24px; flex-wrap:wrap; }
+  .stat { text-align:center; }
+  .stat-num { font-size:2rem; font-weight:800; color:var(--sky); }
+  .stat-label { font-size:0.8rem; color:var(--text-light); font-weight:500; }
+  .about-card {
+    background:linear-gradient(135deg,#EBF4FD,var(--cream));
+    border-radius:var(--radius); padding:28px; flex-shrink:0; width:240px;
+    box-shadow:var(--shadow);
+  }
+  .about-card-item { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .about-card-item:last-child { margin-bottom:0; }
+  .about-icon { font-size:1.4rem; }
+  .about-card-label { font-size:0.82rem; color:var(--text-light); }
+  .about-card-val { font-size:0.92rem; font-weight:600; color:var(--text); }
+
+  #skills { background:linear-gradient(180deg,#EBF4FD 0%,var(--cream) 100%); }
+  .skills-category { margin-bottom:32px; }
+  .skills-category-title { font-size:0.9rem; font-weight:700; color:var(--sky-dark); margin-bottom:14px; text-transform:uppercase; letter-spacing:1px; }
+  .skills-grid { display:flex; flex-wrap:wrap; gap:10px; }
+  .skill-pill {
+    background:var(--white); border:1.5px solid rgba(74,144,217,0.2);
+    color:var(--text); font-size:0.85rem; font-weight:600;
+    padding:8px 16px; border-radius:50px; box-shadow:var(--shadow); transition:all .2s;
+  }
+  .skill-pill:hover { background:var(--sky); color:#fff; border-color:var(--sky); transform:translateY(-2px); }
+
+  #projects { background:var(--white); }
+  .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; }
+  .project-card {
+    background:var(--cream); border-radius:var(--radius); overflow:hidden;
+    box-shadow:var(--shadow); transition:transform .2s;
+    border:1px solid rgba(74,144,217,0.1);
+  }
+  .project-card:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(74,144,217,0.2); }
+  .project-banner { height:130px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
+  .project-body { padding:20px; }
+  .project-title { font-size:1.05rem; font-weight:700; margin-bottom:8px; }
+  .project-desc { font-size:0.87rem; color:var(--text-light); line-height:1.75; margin-bottom:14px; }
+  .project-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag { background:rgba(74,144,217,0.1); color:var(--sky-dark); font-size:0.74rem; font-weight:600; padding:3px 10px; border-radius:50px; }
+
+  #education { background:linear-gradient(135deg,#EBF4FD,var(--cream)); }
+  .edu-cards { display:flex; flex-direction:column; gap:16px; max-width:700px; }
+  .edu-card {
+    background:var(--white); border-radius:var(--radius); padding:20px 24px;
+    box-shadow:var(--shadow); display:flex; align-items:center; gap:20px;
+    border-left:4px solid var(--sky);
+  }
+  .edu-icon { font-size:2rem; flex-shrink:0; }
+  .edu-degree { font-weight:700; font-size:1rem; margin-bottom:4px; }
+  .edu-school { color:var(--text-light); font-size:0.88rem; margin-bottom:2px; }
+  .edu-grade { color:var(--sky-dark); font-size:0.85rem; font-weight:600; }
+
+  #resume { background:var(--white); text-align:center; }
+  .resume-box {
+    max-width:560px; margin:0 auto;
+    background:linear-gradient(135deg,#EBF4FD,var(--cream));
+    border-radius:var(--radius); padding:40px; box-shadow:var(--shadow);
+  }
+  .resume-icon { font-size:3.5rem; margin-bottom:16px; }
+  .resume-box h3 { font-size:1.4rem; font-weight:800; margin-bottom:8px; }
+  .resume-box p { color:var(--text-light); margin-bottom:28px; line-height:1.7; }
+
+  #contact { background:linear-gradient(180deg,var(--cream) 0%,#EBF4FD 100%); }
+  .contact-inner { display:flex; gap:4rem; flex-wrap:wrap; }
+  .contact-info { flex:1; min-width:240px; }
+  .contact-info p { color:var(--text-light); line-height:1.8; margin-bottom:24px; }
+  .contact-item { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+  .contact-icon { width:44px; height:44px; border-radius:50%; background:rgba(74,144,217,0.1); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+  .contact-label { font-size:0.78rem; color:var(--text-light); }
+  .contact-val { font-size:0.92rem; font-weight:600; color:var(--text); word-break:break-all; }
+  .contact-val a { color:var(--sky-dark); text-decoration:none; }
+  .contact-val a:hover { color:var(--sky); }
+
+  footer { text-align:center; padding:28px; background:var(--cream-dark); font-size:0.85rem; color:var(--text-light); }
+  footer span { color:var(--sky); font-weight:600; }
+
+  @media(max-width:640px) {
+    nav { padding:0 5%; }
+    .nav-links { gap:1rem; font-size:0.82rem; }
+    section { padding:80px 5% 60px; }
+    .hero-avatar { width:180px; height:180px; font-size:4.5rem; }
+    .about-card { width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Akash <span>Hirve</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-greeting">👋 Hey there, I'm</p>
+      <h1 class="hero-name">Akash <span>Hirve</span></h1>
+      <p class="hero-role">☁️ Salesforce Developer · AgentForce Specialist</p>
+      <p class="hero-tagline">Salesforce Developer with 9+ months of hands-on experience in Apex, LWC, Triggers, Flows & SOQL — specializing in CRM customization, automation & AI-powered agents.</p>
+      <div class="cert-badges">
+        <span class="badge">🏅 Platform Developer I</span>
+        <span class="badge">🤖 AgentForce Specialist</span>
+        <span class="badge">🔵 AI Associate</span>
+        <span class="badge">📊 Data Cloud Consultant</span>
+        <span class="badge">⭐⭐⭐⭐⭐ Five-Star Trailhead Ranger</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="AkashHirve_Resume.pdf" download="AkashHirve_Resume.pdf" class="btn btn-outline">⬇ Download Resume</a>
+      </div>
+    </div>
+    <div class="hero-avatar">🧑‍💻</div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <span class="section-tag">About Me</span>
+      <h2 class="section-title">Building smart Salesforce solutions</h2>
+      <p>Hi! I'm Akash Hirve, a Salesforce Developer Intern at Atman Cloud Consultants, Pune. I specialise in building robust backend logic with Apex, crafting dynamic interfaces with Lightning Web Components, and automating complex business workflows with Flows.</p>
+      <p>I've delivered Salesforce solutions across the pharmaceutical and environmental science domains — from lab operations to compliance tracking. Certified Salesforce Platform Developer I, AI Specialist, Data Cloud Consultant, and proud Five-Star Trailhead Ranger.</p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">9+</div><div class="stat-label">Months Experience</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">Industry Domains</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Certifications</div></div>
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-item"><span class="about-icon">📍</span><div><div class="about-card-label">Location</div><div class="about-card-val">Pune, Maharashtra</div></div></div>
+      <div class="about-card-item"><span class="about-icon">🏢</span><div><div class="about-card-label">Company</div><div class="about-card-val">Atman Cloud Consultants</div></div></div>
+      <div class="about-card-item"><span class="about-icon">🎓</span><div><div class="about-card-label">Education</div><div class="about-card-val">BSc Computer Science</div></div></div>
+      <div class="about-card-item"><span class="about-icon">🗣️</span><div><div class="about-card-label">Languages</div><div class="about-card-val">English, Marathi, Hindi</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <span class="section-tag">Skills</span>
+  <h2 class="section-title">What I work with</h2>
+  <p class="section-sub">A well-rounded Salesforce toolkit built through real-world project delivery.</p>
+  <div class="skills-category">
+    <div class="skills-category-title">⚡ Salesforce Development</div>
+    <div class="skills-grid">
+      <span class="skill-pill">LWC</span>
+      <span class="skill-pill">Apex Classes & Triggers</span>
+      <span class="skill-pill">SOQL & SOSL</span>
+      <span class="skill-pill">Batch Apex</span>
+      <span class="skill-pill">Future Methods</span>
+      <span class="skill-pill">Test Classes</span>
+      <span class="skill-pill">Asynchronous Apex</span>
+    </div>
+  </div>
+  <div class="skills-category">
+    <div class="skills-category-title">🛠️ Salesforce Customization</div>
+    <div class="skills-grid">
+      <span class="skill-pill">Fields & Relationships</span>
+      <span class="skill-pill">Record Types</span>
+      <span class="skill-pill">Profiles & Permission Sets</span>
+      <span class="skill-pill">Validation Rules</span>
+      <span class="skill-pill">Flows & Approval Process</span>
+      <span class="skill-pill">Sharing Rules</span>
+      <span class="skill-pill">Reports & Dashboards</span>
+      <span class="skill-pill">Data Loader & Import Wizard</span>
+    </div>
+  </div>
+  <div class="skills-category">
+    <div class="skills-category-title">☁️ Clouds & Web</div>
+    <div class="skills-grid">
+      <span class="skill-pill">Sales Cloud</span>
+      <span class="skill-pill">Service Cloud</span>
+      <span class="skill-pill">HTML</span>
+      <span class="skill-pill">CSS</span>
+      <span class="skill-pill">JavaScript</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <span class="section-tag">Projects</span>
+  <h2 class="section-title">Things I've built</h2>
+  <p class="section-sub">Real-world Salesforce solutions delivered across two industry domains.</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-banner" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9)">🌿</div>
+      <div class="project-body">
+        <div class="project-title">Environmental Science Platform</div>
+        <div class="project-desc">Customized Salesforce objects, flows & validation rules for lab operations. Built LWCs for tenant insights and documentation status, automated order processing and notifications, and created real-time dashboards for lab performance visibility.</div>
+        <div class="project-tags">
+          <span class="tag">Apex</span><span class="tag">LWC</span><span class="tag">Flows</span>
+          <span class="tag">SOQL</span><span class="tag">Dashboards</span><span class="tag">Approval Process</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-banner" style="background:linear-gradient(135deg,#EBF4FD,#BBDEFB)">💊</div>
+      <div class="project-body">
+        <div class="project-title">Pharmaceutical Lab Solution</div>
+        <div class="project-desc">End-to-end Salesforce solution for pharma lab operations covering clinical documentation, order management & compliance tracking. Built LWCs and dashboards for real-time regulatory and performance visibility with bulkified Apex and RBAC security.</div>
+        <div class="project-tags">
+          <span class="tag">Apex</span><span class="tag">LWC</span><span class="tag">Compliance</span>
+          <span class="tag">Custom Objects</span><span class="tag">Sandbox to Prod</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-banner" style="background:linear-gradient(135deg,#FDF0E8,#F2CEBB)">🤖</div>
+      <div class="project-body">
+        <div class="project-title">AgentForce Opportunities Intelligence Agent</div>
+        <div class="project-desc">Built an AI-powered AgentForce agent to surface related object data — Quotes, Visits, Accounts, Samples & Orders — via a unified Apex wrapper class using a router pattern with a single @InvocableMethod.</div>
+        <div class="project-tags">
+          <span class="tag">AgentForce</span><span class="tag">Apex</span>
+          <span class="tag">@InvocableMethod</span><span class="tag">AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <span class="section-tag">Education</span>
+  <h2 class="section-title">Academic background</h2>
+  <p class="section-sub">A strong foundation in Computer Science from Pune.</p>
+  <div class="edu-cards">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div><div class="edu-degree">BSc (Computer Science)</div><div class="edu-school">Pune University</div><div class="edu-grade">CGPA: 7.68 · 2025</div></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📘</div>
+      <div><div class="edu-degree">XII — HSC</div><div class="edu-school">Wadia College, Pune</div><div class="edu-grade">81.7% · 2021</div></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📗</div>
+      <div><div class="edu-degree">X — SSC</div><div class="edu-school">CSVB, Belwandi</div><div class="edu-grade">76% · 2019</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="resume-box">
+    <div class="resume-icon">📄</div>
+    <h3>Download My Resume</h3>
+    <p>Get the full overview of my experience, certifications, and projects in one clean document. Platform Developer I · AgentForce Specialist · AI Associate · Data Cloud Consultant · Five-Star Ranger.</p>
+    <a href="AkashHirve_Resume.pdf" download="AkashHirve_Resume.pdf" class="btn btn-primary">⬇ Download Resume</a>
+  </div>
+</section>
+
+<section id="contact">
+  <span class="section-tag">Contact</span>
+  <h2 class="section-title">Let's connect!</h2>
+  <p class="section-sub">Have a project, opportunity, or just want to talk Salesforce? I'd love to hear from you.</p>
+  <div class="contact-inner">
+    <div class="contact-info">
+      <p>Whether it's a new project, a collaboration, or a quick Salesforce question — my inbox is always open.</p>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:akashhirve0505@gmail.com">akashhirve0505@gmail.com</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div><div class="contact-label">Phone</div><div class="contact-val"><a href="tel:9881798805">+91 9881798805</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/akash-hirve-628507231/" target="_blank">akash-hirve-628507231</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">☁️</div>
+        <div><div class="contact-label">Trailhead</div><div class="contact-val"><a href="https://www.salesforce.com/trailblazer/akashhirve-05" target="_blank">trailblazer/akashhirve-05</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div><div class="contact-label">Location</div><div class="contact-val">Pune, Maharashtra, India</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with ❤️ by <span>Akash Hirve</span> · Salesforce Developer · Pune, India
+</footer>
+
+</body>
+</html>
