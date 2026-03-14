@@ -24,7 +24,7 @@
   }
   .logo { font-size:1.3rem; font-weight:700; color:var(--sky-dark); letter-spacing:-0.5px; }
   .logo span { color:var(--sky); }
-  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links { display:flex; gap:1.6rem; list-style:none; }
   .nav-links a { text-decoration:none; color:var(--text-light); font-size:0.9rem; font-weight:500; transition:color .2s; }
   .nav-links a:hover { color:var(--sky); }
 
@@ -37,10 +37,10 @@
   h2.section-title { font-size:2rem; font-weight:800; color:var(--text); margin-bottom:8px; }
   .section-sub { color:var(--text-light); font-size:1rem; margin-bottom:40px; max-width:480px; }
 
+  /* HERO */
   #hero {
     min-height:100vh; display:flex; align-items:center;
-    background:linear-gradient(135deg,#EBF4FD 0%,var(--cream) 60%);
-    padding-top:100px;
+    background:linear-gradient(135deg,#EBF4FD 0%,var(--cream) 60%); padding-top:100px;
   }
   .hero-inner { display:flex; align-items:center; justify-content:space-between; gap:3rem; width:100%; flex-wrap:wrap; }
   .hero-text { flex:1; min-width:280px; }
@@ -52,8 +52,7 @@
   .cert-badges { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
   .badge {
     background:rgba(74,144,217,0.1); border:1px solid rgba(74,144,217,0.25);
-    color:var(--sky-dark); font-size:0.75rem; font-weight:700;
-    padding:5px 12px; border-radius:50px;
+    color:var(--sky-dark); font-size:0.75rem; font-weight:700; padding:5px 12px; border-radius:50px;
   }
   .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
   .btn { padding:12px 28px; border-radius:50px; font-weight:600; font-size:0.95rem; cursor:pointer; border:none; text-decoration:none; transition:all .2s; display:inline-block; }
@@ -73,6 +72,7 @@
   }
   @keyframes spin { to { transform:rotate(360deg); } }
 
+  /* ABOUT */
   #about { background:var(--white); }
   .about-inner { display:flex; gap:4rem; align-items:center; flex-wrap:wrap; }
   .about-text { flex:1; min-width:260px; }
@@ -83,8 +83,7 @@
   .stat-label { font-size:0.8rem; color:var(--text-light); font-weight:500; }
   .about-card {
     background:linear-gradient(135deg,#EBF4FD,var(--cream));
-    border-radius:var(--radius); padding:28px; flex-shrink:0; width:240px;
-    box-shadow:var(--shadow);
+    border-radius:var(--radius); padding:28px; flex-shrink:0; width:240px; box-shadow:var(--shadow);
   }
   .about-card-item { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
   .about-card-item:last-child { margin-bottom:0; }
@@ -92,6 +91,7 @@
   .about-card-label { font-size:0.82rem; color:var(--text-light); }
   .about-card-val { font-size:0.92rem; font-weight:600; color:var(--text); }
 
+  /* SKILLS */
   #skills { background:linear-gradient(180deg,#EBF4FD 0%,var(--cream) 100%); }
   .skills-category { margin-bottom:32px; }
   .skills-category-title { font-size:0.9rem; font-weight:700; color:var(--sky-dark); margin-bottom:14px; text-transform:uppercase; letter-spacing:1px; }
@@ -103,12 +103,12 @@
   }
   .skill-pill:hover { background:var(--sky); color:#fff; border-color:var(--sky); transform:translateY(-2px); }
 
+  /* PROJECTS */
   #projects { background:var(--white); }
   .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; }
   .project-card {
     background:var(--cream); border-radius:var(--radius); overflow:hidden;
-    box-shadow:var(--shadow); transition:transform .2s;
-    border:1px solid rgba(74,144,217,0.1);
+    box-shadow:var(--shadow); transition:transform .2s; border:1px solid rgba(74,144,217,0.1);
   }
   .project-card:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(74,144,217,0.2); }
   .project-banner { height:130px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
@@ -118,10 +118,66 @@
   .project-tags { display:flex; flex-wrap:wrap; gap:6px; }
   .tag { background:rgba(74,144,217,0.1); color:var(--sky-dark); font-size:0.74rem; font-weight:600; padding:3px 10px; border-radius:50px; }
 
-  #education { background:linear-gradient(135deg,#EBF4FD,var(--cream)); }
+  /* CERTIFICATIONS */
+  #certifications { background:linear-gradient(135deg,#EBF4FD,var(--cream)); }
+  .cert-slider-wrapper { position:relative; max-width:600px; margin:0 auto; }
+  .cert-slider {
+    overflow:hidden; border-radius:var(--radius);
+    background:var(--white); box-shadow:0 8px 40px rgba(74,144,217,0.18);
+  }
+  .cert-track {
+    display:flex; transition:transform 0.6s cubic-bezier(.77,0,.18,1);
+  }
+  .cert-slide {
+    min-width:100%; padding:40px 32px 36px;
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+  }
+  .cert-img-wrap {
+    width:180px; height:180px; display:flex; align-items:center; justify-content:center;
+    margin-bottom:28px; filter:drop-shadow(0 6px 18px rgba(74,144,217,0.22));
+    transition:transform .3s;
+  }
+  .cert-img-wrap:hover { transform:scale(1.05); }
+  .cert-img-wrap img { width:100%; height:100%; object-fit:contain; }
+  .cert-name { font-size:1.25rem; font-weight:800; color:var(--text); margin-bottom:8px; }
+  .cert-issuer { font-size:0.88rem; font-weight:600; color:var(--sky); margin-bottom:12px; letter-spacing:0.5px; }
+  .cert-desc { font-size:0.9rem; color:var(--text-light); line-height:1.75; max-width:420px; }
+
+  /* Arrows */
+  .cert-arrow {
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:42px; height:42px; border-radius:50%; border:2px solid var(--sky);
+    background:var(--white); color:var(--sky); font-size:1.1rem;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; z-index:10; transition:all .2s; box-shadow:var(--shadow);
+  }
+  .cert-arrow:hover { background:var(--sky); color:#fff; }
+  .cert-prev { left:-22px; }
+  .cert-next { right:-22px; }
+
+  /* Dots */
+  .cert-dots { display:flex; justify-content:center; gap:8px; margin-top:24px; }
+  .dot {
+    width:10px; height:10px; border-radius:50%;
+    background:rgba(74,144,217,0.25); cursor:pointer; transition:all .3s;
+  }
+  .dot.active { background:var(--sky); transform:scale(1.25); }
+
+  /* Progress bar */
+  .cert-progress {
+    height:3px; background:rgba(74,144,217,0.15); border-radius:0 0 var(--radius) var(--radius); overflow:hidden;
+  }
+  .cert-progress-bar {
+    height:100%; background:linear-gradient(90deg,var(--sky-light),var(--sky));
+    border-radius:3px; animation:progress 3.5s linear infinite;
+  }
+  @keyframes progress { from{width:0%} to{width:100%} }
+
+  /* EDUCATION */
+  #education { background:var(--white); }
   .edu-cards { display:flex; flex-direction:column; gap:16px; max-width:700px; }
   .edu-card {
-    background:var(--white); border-radius:var(--radius); padding:20px 24px;
+    background:var(--cream); border-radius:var(--radius); padding:20px 24px;
     box-shadow:var(--shadow); display:flex; align-items:center; gap:20px;
     border-left:4px solid var(--sky);
   }
@@ -130,17 +186,18 @@
   .edu-school { color:var(--text-light); font-size:0.88rem; margin-bottom:2px; }
   .edu-grade { color:var(--sky-dark); font-size:0.85rem; font-weight:600; }
 
-  #resume { background:var(--white); text-align:center; }
+  /* RESUME */
+  #resume { background:linear-gradient(135deg,#EBF4FD,var(--cream)); text-align:center; }
   .resume-box {
     max-width:560px; margin:0 auto;
-    background:linear-gradient(135deg,#EBF4FD,var(--cream));
-    border-radius:var(--radius); padding:40px; box-shadow:var(--shadow);
+    background:var(--white); border-radius:var(--radius); padding:40px; box-shadow:var(--shadow);
   }
   .resume-icon { font-size:3.5rem; margin-bottom:16px; }
   .resume-box h3 { font-size:1.4rem; font-weight:800; margin-bottom:8px; }
   .resume-box p { color:var(--text-light); margin-bottom:28px; line-height:1.7; }
 
-  #contact { background:linear-gradient(180deg,var(--cream) 0%,#EBF4FD 100%); }
+  /* CONTACT */
+  #contact { background:var(--white); }
   .contact-inner { display:flex; gap:4rem; flex-wrap:wrap; }
   .contact-info { flex:1; min-width:240px; }
   .contact-info p { color:var(--text-light); line-height:1.8; margin-bottom:24px; }
@@ -155,11 +212,13 @@
   footer span { color:var(--sky); font-weight:600; }
 
   @media(max-width:640px) {
-    nav { padding:0 5%; }
-    .nav-links { gap:1rem; font-size:0.82rem; }
+    nav { padding:0 4%; }
+    .nav-links { gap:0.8rem; font-size:0.78rem; }
     section { padding:80px 5% 60px; }
     .hero-avatar { width:180px; height:180px; font-size:4.5rem; }
     .about-card { width:100%; }
+    .cert-prev { left:-14px; }
+    .cert-next { right:-14px; }
   }
 </style>
 </head>
@@ -171,12 +230,14 @@
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#resume">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-text">
@@ -200,6 +261,7 @@
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="about-inner">
     <div class="about-text">
@@ -222,6 +284,7 @@
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
   <span class="section-tag">Skills</span>
   <h2 class="section-title">What I work with</h2>
@@ -229,40 +292,31 @@
   <div class="skills-category">
     <div class="skills-category-title">⚡ Salesforce Development</div>
     <div class="skills-grid">
-      <span class="skill-pill">LWC</span>
-      <span class="skill-pill">Apex Classes & Triggers</span>
-      <span class="skill-pill">SOQL & SOSL</span>
-      <span class="skill-pill">Batch Apex</span>
-      <span class="skill-pill">Future Methods</span>
-      <span class="skill-pill">Test Classes</span>
+      <span class="skill-pill">LWC</span><span class="skill-pill">Apex Classes & Triggers</span>
+      <span class="skill-pill">SOQL & SOSL</span><span class="skill-pill">Batch Apex</span>
+      <span class="skill-pill">Future Methods</span><span class="skill-pill">Test Classes</span>
       <span class="skill-pill">Asynchronous Apex</span>
     </div>
   </div>
   <div class="skills-category">
     <div class="skills-category-title">🛠️ Salesforce Customization</div>
     <div class="skills-grid">
-      <span class="skill-pill">Fields & Relationships</span>
-      <span class="skill-pill">Record Types</span>
-      <span class="skill-pill">Profiles & Permission Sets</span>
-      <span class="skill-pill">Validation Rules</span>
-      <span class="skill-pill">Flows & Approval Process</span>
-      <span class="skill-pill">Sharing Rules</span>
-      <span class="skill-pill">Reports & Dashboards</span>
-      <span class="skill-pill">Data Loader & Import Wizard</span>
+      <span class="skill-pill">Fields & Relationships</span><span class="skill-pill">Record Types</span>
+      <span class="skill-pill">Profiles & Permission Sets</span><span class="skill-pill">Validation Rules</span>
+      <span class="skill-pill">Flows & Approval Process</span><span class="skill-pill">Sharing Rules</span>
+      <span class="skill-pill">Reports & Dashboards</span><span class="skill-pill">Data Loader & Import Wizard</span>
     </div>
   </div>
   <div class="skills-category">
     <div class="skills-category-title">☁️ Clouds & Web</div>
     <div class="skills-grid">
-      <span class="skill-pill">Sales Cloud</span>
-      <span class="skill-pill">Service Cloud</span>
-      <span class="skill-pill">HTML</span>
-      <span class="skill-pill">CSS</span>
-      <span class="skill-pill">JavaScript</span>
+      <span class="skill-pill">Sales Cloud</span><span class="skill-pill">Service Cloud</span>
+      <span class="skill-pill">HTML</span><span class="skill-pill">CSS</span><span class="skill-pill">JavaScript</span>
     </div>
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
   <span class="section-tag">Projects</span>
   <h2 class="section-title">Things I've built</h2>
@@ -273,21 +327,15 @@
       <div class="project-body">
         <div class="project-title">Environmental Science Platform</div>
         <div class="project-desc">Customized Salesforce objects, flows & validation rules for lab operations. Built LWCs for tenant insights and documentation status, automated order processing and notifications, and created real-time dashboards for lab performance visibility.</div>
-        <div class="project-tags">
-          <span class="tag">Apex</span><span class="tag">LWC</span><span class="tag">Flows</span>
-          <span class="tag">SOQL</span><span class="tag">Dashboards</span><span class="tag">Approval Process</span>
-        </div>
+        <div class="project-tags"><span class="tag">Apex</span><span class="tag">LWC</span><span class="tag">Flows</span><span class="tag">SOQL</span><span class="tag">Dashboards</span></div>
       </div>
     </div>
     <div class="project-card">
       <div class="project-banner" style="background:linear-gradient(135deg,#EBF4FD,#BBDEFB)">💊</div>
       <div class="project-body">
         <div class="project-title">Pharmaceutical Lab Solution</div>
-        <div class="project-desc">End-to-end Salesforce solution for pharma lab operations covering clinical documentation, order management & compliance tracking. Built LWCs and dashboards for real-time regulatory and performance visibility with bulkified Apex and RBAC security.</div>
-        <div class="project-tags">
-          <span class="tag">Apex</span><span class="tag">LWC</span><span class="tag">Compliance</span>
-          <span class="tag">Custom Objects</span><span class="tag">Sandbox to Prod</span>
-        </div>
+        <div class="project-desc">End-to-end Salesforce solution for pharma lab operations covering clinical documentation, order management & compliance tracking. Built LWCs and dashboards for real-time regulatory and performance visibility.</div>
+        <div class="project-tags"><span class="tag">Apex</span><span class="tag">LWC</span><span class="tag">Compliance</span><span class="tag">Custom Objects</span></div>
       </div>
     </div>
     <div class="project-card">
@@ -295,44 +343,88 @@
       <div class="project-body">
         <div class="project-title">AgentForce Opportunities Intelligence Agent</div>
         <div class="project-desc">Built an AI-powered AgentForce agent to surface related object data — Quotes, Visits, Accounts, Samples & Orders — via a unified Apex wrapper class using a router pattern with a single @InvocableMethod.</div>
-        <div class="project-tags">
-          <span class="tag">AgentForce</span><span class="tag">Apex</span>
-          <span class="tag">@InvocableMethod</span><span class="tag">AI</span>
-        </div>
+        <div class="project-tags"><span class="tag">AgentForce</span><span class="tag">Apex</span><span class="tag">@InvocableMethod</span><span class="tag">AI</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <span class="section-tag">Certifications</span>
+  <h2 class="section-title">My credentials</h2>
+  <p class="section-sub">Industry-recognised certifications earned through hands-on learning and practice.</p>
+
+  <div class="cert-slider-wrapper">
+    <button class="cert-arrow cert-prev" onclick="moveCert(-1)">&#8592;</button>
+    <div class="cert-slider">
+      <div class="cert-track" id="certTrack">
+
+        <div class="cert-slide">
+          <div class="cert-img-wrap"><img src="cert3.png" alt="Salesforce Platform Developer I"/></div>
+          <div class="cert-name">Salesforce Certified Platform Developer I</div>
+          <div class="cert-issuer">Salesforce</div>
+          <div class="cert-desc">Validates the ability to build custom applications on the Salesforce platform using Apex, Visualforce, and Lightning components with a strong understanding of the platform's capabilities.</div>
+        </div>
+
+        <div class="cert-slide">
+          <div class="cert-img-wrap"><img src="cert4.png" alt="AgentForce Specialist"/></div>
+          <div class="cert-name">Salesforce Certified AgentForce Specialist</div>
+          <div class="cert-issuer">Salesforce</div>
+          <div class="cert-desc">Demonstrates expertise in building, configuring, and deploying AI-powered AgentForce agents on the Salesforce platform to automate intelligent business workflows.</div>
+        </div>
+
+        <div class="cert-slide">
+          <div class="cert-img-wrap"><img src="cert1.png" alt="Copado Fundamentals II"/></div>
+          <div class="cert-name">Copado Certified — Fundamentals II</div>
+          <div class="cert-issuer">Copado</div>
+          <div class="cert-desc">Covers advanced Copado DevOps concepts including pipeline management, continuous integration, and deployment automation for Salesforce environments.</div>
+        </div>
+
+        <div class="cert-slide">
+          <div class="cert-img-wrap"><img src="cert2.png" alt="Copado Fundamentals I — Metadata Pipeline"/></div>
+          <div class="cert-name">Copado Certified — Fundamentals I</div>
+          <div class="cert-issuer">Copado · Metadata Pipeline</div>
+          <div class="cert-desc">Validates foundational knowledge of Copado's Metadata Pipeline for Salesforce DevOps, covering source control, branching strategies, and deployment workflows.</div>
+        </div>
+
+      </div>
+      <div class="cert-progress"><div class="cert-progress-bar" id="progressBar"></div></div>
+    </div>
+    <button class="cert-arrow cert-next" onclick="moveCert(1)">&#8594;</button>
+
+    <div class="cert-dots" id="certDots">
+      <div class="dot active" onclick="goToCert(0)"></div>
+      <div class="dot" onclick="goToCert(1)"></div>
+      <div class="dot" onclick="goToCert(2)"></div>
+      <div class="dot" onclick="goToCert(3)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
 <section id="education">
   <span class="section-tag">Education</span>
   <h2 class="section-title">Academic background</h2>
   <p class="section-sub">A strong foundation in Computer Science from Pune.</p>
   <div class="edu-cards">
-    <div class="edu-card">
-      <div class="edu-icon">🎓</div>
-      <div><div class="edu-degree">BSc (Computer Science)</div><div class="edu-school">Pune University</div><div class="edu-grade">CGPA: 7.68 · 2025</div></div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">📘</div>
-      <div><div class="edu-degree">XII — HSC</div><div class="edu-school">Wadia College, Pune</div><div class="edu-grade">81.7% · 2021</div></div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">📗</div>
-      <div><div class="edu-degree">X — SSC</div><div class="edu-school">CSVB, Belwandi</div><div class="edu-grade">76% · 2019</div></div>
-    </div>
+    <div class="edu-card"><div class="edu-icon">🎓</div><div><div class="edu-degree">BSc (Computer Science)</div><div class="edu-school">Pune University</div><div class="edu-grade">CGPA: 7.68 · 2025</div></div></div>
+    <div class="edu-card"><div class="edu-icon">📘</div><div><div class="edu-degree">XII — HSC</div><div class="edu-school">Wadia College, Pune</div><div class="edu-grade">81.7% · 2021</div></div></div>
+    <div class="edu-card"><div class="edu-icon">📗</div><div><div class="edu-degree">X — SSC</div><div class="edu-school">CSVB, Belwandi</div><div class="edu-grade">76% · 2019</div></div></div>
   </div>
 </section>
 
+<!-- RESUME -->
 <section id="resume">
   <div class="resume-box">
     <div class="resume-icon">📄</div>
     <h3>Download My Resume</h3>
-    <p>Get the full overview of my experience, certifications, and projects in one clean document. Platform Developer I · AgentForce Specialist · AI Associate · Data Cloud Consultant · Five-Star Ranger.</p>
+    <p>Get the full overview of my experience, certifications, and projects. Platform Developer I · AgentForce Specialist · AI Associate · Data Cloud Consultant · Five-Star Ranger.</p>
     <a href="AkashHirve_Resume.pdf" download="AkashHirve_Resume.pdf" class="btn btn-primary">⬇ Download Resume</a>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <span class="section-tag">Contact</span>
   <h2 class="section-title">Let's connect!</h2>
@@ -340,33 +432,52 @@
   <div class="contact-inner">
     <div class="contact-info">
       <p>Whether it's a new project, a collaboration, or a quick Salesforce question — my inbox is always open.</p>
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:akashhirve0505@gmail.com">akashhirve0505@gmail.com</a></div></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div><div class="contact-label">Phone</div><div class="contact-val"><a href="tel:9881798805">+91 9881798805</a></div></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">💼</div>
-        <div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/akash-hirve-628507231/" target="_blank">akash-hirve-628507231</a></div></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">☁️</div>
-        <div><div class="contact-label">Trailhead</div><div class="contact-val"><a href="https://www.salesforce.com/trailblazer/akashhirve-05" target="_blank">trailblazer/akashhirve-05</a></div></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div><div class="contact-label">Location</div><div class="contact-val">Pune, Maharashtra, India</div></div>
-      </div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:akashhirve0505@gmail.com">akashhirve0505@gmail.com</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Phone</div><div class="contact-val"><a href="tel:9881798805">+91 9881798805</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon">💼</div><div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/akash-hirve-628507231/" target="_blank">akash-hirve-628507231</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon">☁️</div><div><div class="contact-label">Trailhead</div><div class="contact-val"><a href="https://www.salesforce.com/trailblazer/akashhirve-05" target="_blank">trailblazer/akashhirve-05</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Location</div><div class="contact-val">Pune, Maharashtra, India</div></div></div>
     </div>
   </div>
 </section>
 
-<footer>
-  Built with ❤️ by <span>Akash Hirve</span> · Salesforce Developer · Pune, India
-</footer>
+<footer>Built with ❤️ by <span>Akash Hirve</span> · Salesforce Developer · Pune, India</footer>
 
+<script>
+  let cur = 0, total = 4, timer, progAnim;
+  const track = document.getElementById('certTrack');
+  const dots = document.querySelectorAll('.dot');
+  const bar = document.getElementById('progressBar');
+
+  function goToCert(n) {
+    cur = (n + total) % total;
+    track.style.transform = `translateX(-${cur * 100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('active', i === cur));
+    resetProgress();
+  }
+
+  function moveCert(dir) { goToCert(cur + dir); }
+
+  function resetProgress() {
+    bar.style.animation = 'none';
+    bar.offsetHeight; // reflow
+    bar.style.animation = 'progress 3.5s linear infinite';
+    clearInterval(timer);
+    timer = setInterval(() => goToCert(cur + 1), 3500);
+  }
+
+  // Start auto-slide
+  timer = setInterval(() => goToCert(cur + 1), 3500);
+
+  // Pause on hover
+  document.querySelector('.cert-slider').addEventListener('mouseenter', () => {
+    clearInterval(timer);
+    bar.style.animationPlayState = 'paused';
+  });
+  document.querySelector('.cert-slider').addEventListener('mouseleave', () => {
+    bar.style.animationPlayState = 'running';
+    timer = setInterval(() => goToCert(cur + 1), 3500);
+  });
+</script>
 </body>
 </html>
